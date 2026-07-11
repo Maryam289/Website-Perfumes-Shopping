@@ -2,6 +2,8 @@ import express from "express"
 import cors from "cors"
 import { connectDB } from "./config/db.js"
 import perfumeRouter from "./routes/perfumeRoute.js"
+import userRouter from "./routes/userRoute.js"
+import 'dotenv/config'
 
 
 
@@ -23,6 +25,7 @@ connectDB();
 // api endpoints
 app.use("/api/perfume", perfumeRouter)
 app.use("/images", express.static('uploads'))
+app.use("/api/user", userRouter)
 
 
 app.get("/",(req, res)=>{

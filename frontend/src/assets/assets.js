@@ -19,6 +19,10 @@ import instagram_icon from './instagram_icon.png'
 import play_store from './play_store.jpg'
 import app_store from './app_store.jpg'
 import cross_icon from './cross_icon.png'
+import user_image from './user_image.png'
+import bag_shopping from './bag_shopping.png'
+import logout from './logout.png'
+
 
 
 
@@ -46,7 +50,10 @@ export const assets = {
     instagram_icon,
     play_store,
     app_store,
-    cross_icon
+    cross_icon,
+    user_image,
+    bag_shopping,
+    logout
 }
 
 export const bottle_list = [
