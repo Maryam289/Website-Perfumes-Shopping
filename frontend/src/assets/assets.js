@@ -22,6 +22,7 @@ import cross_icon from './cross_icon.png'
 import user_image from './user_image.png'
 import bag_shopping from './bag_shopping.png'
 import logout from './logout.png'
+import box_order from './box_order.png'
 
 
 
@@ -53,7 +54,8 @@ export const assets = {
     cross_icon,
     user_image,
     bag_shopping,
-    logout
+    logout,
+    box_order
 }
 
 export const bottle_list = [
