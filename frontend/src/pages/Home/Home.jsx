@@ -6,7 +6,7 @@ import PerfumeDisplay from '../../components/PerfumeDisplay/PerfumeDisplay'
 import AppDownload from '../../components/AppDownload/AppDownload'
 
 
-const Home = () => {
+const Home = ({search}) => {
 
   const[category, setCategory] = useState("All");
 
@@ -14,7 +14,7 @@ const Home = () => {
     <div>
       <Header/>
       <ExploreMenu category={category} setCategory={setCategory}/>
-      <PerfumeDisplay category={category}/>
+      <PerfumeDisplay category={category} search={search}/>
       <AppDownload/>
     </div>
   )

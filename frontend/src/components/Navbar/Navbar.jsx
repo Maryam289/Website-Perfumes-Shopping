@@ -4,9 +4,10 @@ import { assets } from '../../assets/assets'
 import { Link, useNavigate } from 'react-router-dom'
 import { StoreContext } from '../../context/StoreContext'
 
-const Navbar = ({setShowLogin}) => {
+const Navbar = ({setShowLogin, setSearch}) => {
 
   const[menu, setMenu] = useState("menu");
+  const[showSearch, setShowSearch] = useState(false);
   const {getTotalCartAmount, token, setToken} = useContext(StoreContext);
 
   const navigate = useNavigate();
@@ -27,7 +28,10 @@ const Navbar = ({setShowLogin}) => {
             <a href='#footer' onClick={()=>setMenu("contact-us")} className={menu==="contact-us"?"active":""}>contact us</a>
         </ul>
         <div className="navbar-right">
-            <img src={assets.search_icon} alt=""  className="search-icon"/>
+            <div className="navbar-search">
+                <img onClick={()=>setShowSearch(!showSearch)} src={assets.search_icon} alt="search"  className="search-icon"/>
+                {showSearch && (<input type='text' placeholder='Search perfume...' onChange={(e) => setSearch(e.target.value)} autoFocus/>)}
+            </div>
             <div className="navbar-search-icon">
                 <Link to='/cart'><img src={assets.basket_icon} alt="" className="basket-icon" /></Link>
                 <div className={getTotalCartAmount()===0 ?"":"dot"}></div>

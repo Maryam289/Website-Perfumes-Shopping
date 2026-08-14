@@ -55,6 +55,30 @@
     width: 40px;
 }
 
+.navbar-search{
+    position:relative;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-search .search-icon{
+    cursor: pointer;
+}
+
+.navbar-search input{
+    width: 180px;
+    padding: 8px 12px;
+    margin-left: 10px;
+    border: 1px, solid #ddd;
+    border-radius: 20px;
+    outline: orangered;
+    font-size: 14px;
+}
+
+.navbar-search input:focus{
+    border-color: tomato;
+}
+
 .basket-icon{
     width: 50px;
 }

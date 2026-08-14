@@ -11,7 +11,8 @@ export const StoreContext = createContext(null)
 const StoreContextProvider = (props) => {
 
     const[cartItems, setCartItems] = useState({});
-    const url = "https://website-perfumes-shopping-backend.onrender.com"
+    // const url = "https://website-perfumes-shopping-backend.onrender.com"
+    const url = "http://localhost:4000"
     const [token, setToken] = useState("");
     const [perfume_list, setPerfumeList] = useState([])
     
@@ -39,7 +40,10 @@ const StoreContextProvider = (props) => {
         let totalAmount = 0;
         for(const item in cartItems){
             if (cartItems[item] > 0) {
-                let itemInfo = perfume_list.find((product) => product._id === item);
+                const itemInfo = perfume_list.find((product) => product._id === item);
+                if (!itemInfo) {
+                    continue;
+                }
                 totalAmount += itemInfo.price * cartItems[item];
             }
         }
@@ -48,8 +52,21 @@ const StoreContextProvider = (props) => {
 
     const fetchPerfumeList = async () => {
         const response = await axios.get(url+"/api/perfume/list");
-        setPerfumeList(response.data.data)
-    }
+        const products = response.data.data
+        setPerfumeList(response.data.data);
+
+        setCartItems((prevCart) => {
+            const cleanedCart = {}
+                for (const itemId in prevCart) {    
+                    const productExists = products.some(
+                        (product) => product._id === itemId);
+                    if (productExists) {
+                        cleanedCart[itemId] = prevCart[itemId];
+                    }
+                }
+                return cleanedCart;
+        });
+    };
 
     //save chossed when refresh page
     const loadCartData = async (token) => {

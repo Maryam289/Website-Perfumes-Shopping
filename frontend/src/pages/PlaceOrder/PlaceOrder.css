@@ -17,6 +17,12 @@
     margin-bottom: 50px;
 }
 
+.place-order-right .title{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
 .place-order-left input{
     margin-bottom: 15px;
     width: 100%;
@@ -38,4 +44,147 @@
 
 .place-order .cart-total button{
     margin-top: 30px;
+}
+
+.order-confirmation{
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.confirmation-circle{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #f4eee8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    animation: confirmationScale 0.5s ease;
+}
+
+.confirmation-circle span{
+    font-size: 50px;
+    color: #6b4f32;
+    font-weight: bold;
+    animation: confirmationCheck 0.5s ease 0.2s both;
+}
+
+.order-confirmation h1{
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.order-confirmation p{
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.order-confirmation button{
+    border: none;
+    background: #6b4f32;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.order-confirmation button:hover{
+    opacity: 0.9;
+}
+
+@keyframes confirmationScale{
+
+    from{
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to{
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+@keyframes confirmationCheck{
+
+    from{
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to{
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+.place-order-button{
+    position: relative;
+    overflow: hidden;
+    height: 50px;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    /* transition: background 0.3s ease; */
+}
+
+.place-order-button:disabled{
+    cursor: default;
+}
+
+.delivery-animation{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.car{
+    position: absolute;
+    font-size: 30px;
+    right: -60px;
+    animation: carMove 2.5s linear forwards;
+}
+
+@keyframes carMove{
+
+     0% {
+        right: -60px;
+    }
+
+    100% {
+        right: calc(100% + 60px);
+    }
+
+}
+
+.order-success {
+    animation: orderPlacedAnimation 0.4s ease;
+}
+
+@keyframes orderPlacedAnimation {
+
+    0% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
 }

@@ -28,6 +28,37 @@
     gap: 20px;
 }
 
+.footer-content-center a, .footer-content-right a{
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-content-center a:hover, .footer-content-right a:hover{
+    color: white;
+}
+
+.footer-content-left p{
+    max-width: 420px;
+    line-height: 1.7;
+    color: #d6d1d1;
+}
+
+.footer-social-icons{
+    display: flex;
+    align-items: center;
+}
+
+.footer-social-icons a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-social-icons img:hover{
+    transform: translateY(-3px);
+}
+
+
 .footer-content-left li, .footer-content-center li, .footer-content-right li{
     list-style: none;
     margin-bottom: 10px;
@@ -41,6 +72,8 @@
 .footer-social-icons img{
     width: 40px;
     margin-right: 15px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 .footer hr{

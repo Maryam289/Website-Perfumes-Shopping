@@ -30,7 +30,7 @@
     font-size: 1vw;
 }
 
-.header-contents button{
+.header-contents a{
     border: none;
     color: rgb(102, 76, 49);
     font-weight: 500;
@@ -38,6 +38,7 @@
     background-color: white;
     font-size: max(1vw,13px);
     border-radius: 50px;
+    cursor: pointer;
 }
 
 @media(max-width:1050px) {
@@ -54,7 +55,7 @@
     .header-contents p{
         display: none;
     }
-    .header-contents button{
+    .header-contents a{
         padding: 2vw 4vw;
     }
 }

@@ -6,7 +6,7 @@ const Header = () => {
       <div className="header-contents">
         <h2>Order Your favourite Perfume here</h2>
         <p>Discover Your signature scant - elegant, unforgettable, and crafted to match every mood</p>
-        <button>Viwe Menu</button>
+        <a href="#explore-size">View Menu</a>
       </div>
     </div>
   )
