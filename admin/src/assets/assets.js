@@ -6,8 +6,8 @@ import orders from './orders.png'
 import upload_img from './upload_img.png'
 import box_order from './box_order.png'
 
-// export const url = 'https://website-perfumes-shopping-backend.onrender.com'
-export const url = 'http://localhost:4000'
+export const url = 'https://website-perfumes-shopping-backend.onrender.com'
+// export const url = 'http://localhost:4000'
 
 export const assets = {
     logo,
