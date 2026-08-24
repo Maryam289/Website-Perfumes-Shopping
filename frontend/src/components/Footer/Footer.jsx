@@ -44,7 +44,7 @@ const Footer = () => {
         <h2>GET IN TOUCH</h2>
         <ul>
           <li><a href={whatsappUrl}>+20 10 3261 0423</a></li>
-          <li><a href="mailto:contact@mnova.com">contect@gmail.com</a></li>
+          <li><a href="mailto:m.n.corner02@gmail.com">corner02@gmail.com</a></li>
         </ul>
 
       </div>

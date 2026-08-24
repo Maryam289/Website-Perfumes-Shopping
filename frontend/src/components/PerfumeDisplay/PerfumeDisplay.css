@@ -15,3 +15,279 @@
     row-gap: 50px;
   
 }
+
+/* ================================
+   PERFUME SIZE SELECTOR
+================================ */
+
+.perfume-size-section {
+    width: 100%;
+    margin: 30px 0 45px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    animation: sizeSectionReveal 0.6s ease both;
+}
+
+
+/* Small luxury heading */
+
+.perfume-size-title {
+    position: relative;
+
+    margin-bottom: 22px;
+
+    color: #8a8a8a;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+
+/* little decorative line */
+
+.perfume-size-title::before,
+.perfume-size-title::after {
+    content: "";
+    position: absolute;
+
+    top: 50%;
+
+    width: 35px;
+    height: 1px;
+
+    background: #dddddd;
+}
+
+.perfume-size-title::before {
+    right: calc(100% + 15px);
+}
+
+.perfume-size-title::after {
+    left: calc(100% + 15px);
+}
+
+
+/* Sizes container */
+
+.perfume-sizes {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: clamp(25px, 5vw, 65px);
+
+    margin: 0 auto;
+}
+
+
+/* Each size */
+
+.perfume-sizes button {
+    position: relative;
+
+    width: 100px;
+
+    border: none;
+    background: transparent;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: #747474;
+
+    transition:
+        transform 0.35s ease,
+        color 0.35s ease;
+}
+
+
+/* Circular image area */
+
+.size-image {
+    position: relative;
+
+    width: 82px;
+    height: 82px;
+
+    border-radius: 50%;
+
+    background: #fafafa;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        background 0.4s ease;
+}
+
+
+/* soft perfume halo */
+
+.size-image::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -5px;
+
+    border-radius: 50%;
+
+    border: 1px solid transparent;
+
+    transition:
+        border-color 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+/* bottle */
+
+.size-image img {
+    width: 68px;
+    height: 68px;
+
+    object-fit: contain;
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+
+/* label */
+
+.perfume-sizes button span {
+    margin-top: 12px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    letter-spacing: 0.4px;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* hover */
+
+.perfume-sizes button:hover {
+    transform: translateY(-7px);
+
+    color: tomato;
+}
+
+.perfume-sizes button:hover .size-image {
+    background: #fff8f5;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.perfume-sizes button:hover .size-image img {
+    transform: scale(1.08) translateY(-2px);
+}
+
+
+/* active */
+
+.perfume-sizes button.active {
+    color: tomato;
+
+    transform: translateY(-5px);
+}
+
+.perfume-sizes button.active .size-image {
+    background: #fff6f2;
+
+    box-shadow:
+        0 8px 25px rgba(255, 99, 71, 0.16);
+}
+
+.perfume-sizes button.active .size-image::before {
+    border-color: tomato;
+
+    transform: scale(1.08);
+}
+
+.perfume-sizes button.active .size-image img {
+    transform: scale(1.1) translateY(-3px);
+}
+
+.perfume-sizes button.active span {
+    transform: translateY(2px);
+}
+
+
+/* reveal animation */
+
+@keyframes sizeSectionReveal {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* responsive */
+
+@media (max-width: 750px) {
+
+    .perfume-sizes {
+        gap: 25px;
+
+        overflow-x: auto;
+
+        justify-content: flex-start;
+
+        padding: 5px 15px 15px;
+    }
+
+    .perfume-sizes::-webkit-scrollbar {
+        display: none;
+    }
+
+    .perfume-sizes button {
+        min-width: 85px;
+    }
+
+    .size-image {
+        width: 72px;
+        height: 72px;
+    }
+
+    .size-image img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .perfume-size-title {
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+}

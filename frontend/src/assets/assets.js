@@ -23,12 +23,15 @@ import user_image from './user_image.png'
 import bag_shopping from './bag_shopping.png'
 import logout from './logout.png'
 import box_order from './box_order.png'
-
-
-
-
-
-
+import snowflake from './snowflake.png'
+import sun from './sun.png'
+import woman_clothes from './woman_clothes.png'
+import suit from './suit.png'
+import img_30ml from './img_30ml.jpg'
+import img_50ml from './img_50ml.jpg'
+import tester_img from './tester_img.jpg'
+import bottle_30ml from './bottel_30ml.png'
+import bottle_50ml from './bottle_50ml.png'
 
 export const assets = {
     logo,
@@ -55,7 +58,16 @@ export const assets = {
     user_image,
     bag_shopping,
     logout,
-    box_order
+    box_order,
+    snowflake,
+    sun,
+    woman_clothes,
+    suit, 
+    img_30ml,
+    img_50ml,
+    tester_img,
+    bottle_30ml,
+    bottle_50ml
 }
 
 export const bottle_list = [
@@ -69,14 +81,31 @@ export const bottle_list = [
         bottle_size: "50ml",
         bottle_image: M_Nova2
 
-    },
-    {
-
-        bottle_size: "100ml",
-        bottle_image: M_Nova3
-
     }
 ]
+
+export const categories = [
+    {
+        id: "Men",
+        name: "Men's Perfumes",
+        image: suit
+    },
+    {
+        id: "Women",
+        name: "Women's Perfumes",
+        image: woman_clothes
+    },
+    {
+        id: "Summer",
+        name: "Summer Perfumes",
+        image: sun
+    },
+    {
+        id: "Winter",
+        name: "Winter Perfumes",
+        image: snowflake
+    }
+];
 
 export const perfume_list = [
     {

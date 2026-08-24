@@ -1,19 +1,19 @@
 import React from 'react'
 import './ExploreMenu.css'
-import { bottle_list } from '../../assets/assets'
+import { bottle_list, categories } from '../../assets/assets'
 
 const ExploreMenu = ({category, setCategory}) => {
 
   return (
-    <div className='explore-size' id='explore-size'>
-      <h1>Explore our bottle size</h1>
-      <p className='explore-size-text'>Choose the perfect bottle size for your lifestyle</p>
-      <div className="explore-size-list">
-        {bottle_list.map((item, index)=>{
+    <div className='explore-category' id='explore-category'>
+      <h1>Choose your interest</h1>
+      <p className='explore-category-text'>Choose the perfect perfume for your lifestyle</p>
+      <div className="explore-category-list">
+        {categories.map((item, index)=>{
           return (
-            <div onClick={()=>setCategory(prev=>prev===item.bottle_size?"All":item.bottle_size)} key={index} className='explore-size-list-item'>
-              <img className={category===item.bottle_size?"active":""} src={item.bottle_image} alt="" />
-              <p>{item.bottle_size}</p>
+            <div onClick={()=>setCategory(prev=>prev===item.id?"All":item.id)} key={index} className='explore-category-list-item'>
+              <img className={category===item.id?"active":""} src={item.image} alt="" />
+              <p>{item.id}</p>
              </div>
           )
         })}

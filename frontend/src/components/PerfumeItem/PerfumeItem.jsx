@@ -1,25 +1,53 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import './PerfumeItem.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
 
-const PerfumeItem = ({id, name, price, description, image}) => {
+const PerfumeItem = ({ productType, sizes = [], collectionItems = [], id, name, price, description, image}) => {
 
-  const{cartItems, addToCart, removeFromCart, url} = useContext(StoreContext);
+  const{cartItems, addToCart, removeFromCart, url, getCartKey} = useContext(StoreContext);
+  // select size from only normal perfume
+  const [selectedSize, setSelectedSize] = useState(sizes.length > 0 ? sizes[0].size : null);
+  const cartKey = productType === "perfume" ? getCartKey(id, selectedSize) : getCartKey(id);
+  const quantity = cartItems[cartKey] || 0;
+
+  // add product safely
+  const handleAddToCart = () => {
+    // perfume must have a selected size
+    if (productType === "perfume") {
+      if (!selectedSize) {
+        return;
+      }
+      addToCart(id, selectedSize);
+      return;
+    }
+
+    // collection without size
+    addToCart(id, null);
+  };
+
+  // remove product
+   const handleRemoveFromCart = () => {
+    if (productType === "perfume") {
+      removeFromCart(id, selectedSize);
+      return;
+    }
+    removeFromCart(id, null);
+   };
 
   return (
     <div className='perfume-item'>
         <div className="perfume-item-img-container">
-            <img className='perfume-item-image' src={url+"/images/"+image} alt="" />
-            {!cartItems[id]
-            ?<img className='add' onClick={()=>addToCart(id)} src={assets.add_icon_white} alt=""/>
-            :<div className='perfume-item-counter'>
-              <img onClick={()=>removeFromCart(id)} src={assets.minus_icon} alt="" />
-              <p>{cartItems[id]}</p>
-              <img onClick={()=>addToCart(id)} src={assets.add_icon} alt="" />
-            </div>
-  
-            }
+            <img className='perfume-item-image' src={url + "/images/" + image} alt={name} />
+            {/* cart button */}
+            {quantity === 0 ? (
+              <img className='add' onClick={handleAddToCart} src={assets.add_icon_white} alt="Add to cart"/>) : (
+                <div className='perfume-item-counter'>
+                  <img onClick={handleRemoveFromCart} src={assets.minus_icon} alt="Remove"/>
+                  <p>{quantity}</p>
+                  <img onClick={handleAddToCart} src={assets.add_icon} alt="Add" />
+                </div>
+              )}
         </div>
         <div className="perfume-item-info">
             <div className="perfume-item-name-rating">
@@ -27,7 +55,33 @@ const PerfumeItem = ({id, name, price, description, image}) => {
                 <img src={assets.rating_starts} alt="" />
             </div>
             <p className="perfume-item-desc">{description}</p>
-            <p className="perfume-item-price">{price} EGP</p>
+            {productType === "collection" && (
+              <div className="collection-preview">
+                <p className="perfume-item-price">{price} EGP</p>
+                {collectionItems.length > 0 && (
+                  <div className = "collection-item-preview">
+                    <p className = "collection-items-title"> This collection includes: </p>
+                    {collectionItems.map((item, index) => (
+                      <p key={`${item.name}-${index}`} className="collection-item-name">{index + 1 }.{item.name}</p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+            {productType === "perfume" && (
+              <div className="perfume-size-options">
+                <p className="perfume-size-label">Choose size</p>
+                <div className="perfume-size-buttons">
+                  {sizes?.map((sizeItem) => (
+                    <button key={sizeItem.size} type="button" className={
+                      selectedSize === sizeItem.size ? "perfume-size-button active" 
+                      : "perfume-size-button"} onClick={() => setSelectedSize(sizeItem.size)}>
+                        <span>{sizeItem.size}</span>
+                        <span>{sizeItem.price} EGP</span></button>
+                ))}
+                </div>
+              </div>
+            )}
         </div>
       
     </div>

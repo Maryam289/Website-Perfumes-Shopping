@@ -9,14 +9,19 @@ const perfumeRouter = express.Router();
 const storage = multer.diskStorage({
     destination:"uploads",
     filename:(req, file, cb)=>{
-        return cb(null, `${Date.now()}${file.originalname}`)
+        cb(null, `${Date.now()}-${file.originalname}`)
     }
 })
 
-const upload = multer({storage:storage})
+const upload = multer({storage});
 
 
-perfumeRouter.post("/add", upload.single("image"), addPerfume)
+perfumeRouter.post("/add", upload.fields([
+    { name: "image", maxCount:1 },
+    { name: "itemImage0", maxCount:1 },
+    { name: "itemImage1", maxCount:1 },
+    { name: "itemImage2", maxCount:1 },
+]), addPerfume)
 perfumeRouter.get("/list", listPerfume)
 perfumeRouter.post("/remove", removePerfume);
 
