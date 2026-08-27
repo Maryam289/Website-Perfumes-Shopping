@@ -1,5 +1,5 @@
 import express from "express"
-import { addPerfume, listPerfume, removePerfume } from "../controllers/perfumeController.js"
+import { addPerfume, listPerfume, removePerfume, removePerfumeSize } from "../controllers/perfumeController.js"
 import multer from "multer"
 
 const perfumeRouter = express.Router();
@@ -24,6 +24,7 @@ perfumeRouter.post("/add", upload.fields([
 ]), addPerfume)
 perfumeRouter.get("/list", listPerfume)
 perfumeRouter.post("/remove", removePerfume);
+perfumeRouter.post("/remove-size", removePerfumeSize)
 
 
 

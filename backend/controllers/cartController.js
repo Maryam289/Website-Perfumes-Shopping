@@ -9,7 +9,7 @@ const getCartKey = (itemId, size) => {
     }
 
     // perfume is identified by product + selected size
-    return `${itemId}_${size}`;
+    return size ? `${itemId}_${size}` : itemId;
 };
 
 const validateCartItem = async (itemId, size) => {

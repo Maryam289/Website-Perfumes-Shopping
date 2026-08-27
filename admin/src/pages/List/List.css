@@ -1,6 +1,6 @@
 .list-table-format{
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
+    grid-template-columns: 0.5fr 1.5fr 1fr 2fr 1.5fr 0.5fr;
     align-items: center;
     gap: 10px;
     padding: 12px 15px;
@@ -11,18 +11,91 @@
 
 .list-table-format.title{
     background-color: #f9f9f9;
+    font-weight: 600;
 }
 
 .list-table-format img{
     width: 50px;
+    height: 50px;
+    object-fit: cover;
 }
 
-@media(max-width:600px){
+.list-product-details, .list-product-price{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.list-product-details p, .list-product-price p{
+    margin: 0;
+}
+
+.product-type{
+    font-weight: 500;
+}
+
+.cursor{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: red;
+}
+
+.list-size-row{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 5px;
+}
+
+.remove-size-button{
+    border: none;
+    background: transparent;
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 2px 6px;
+}
+
+.remove-size-button:hover{
+    opacity: 0.7;
+}
+
+@media (max-width: 900px){
+
     .list-table-format{
-        grid-template-columns: 1fr 3fr 1fr;
-        gap: 15px;
+        grid-template-columns: 60px 1fr 0.8fr 1.2fr 1.2fr 40px;
+        gap: 8px;
+        padding: 10px 8px;
+        font-size: 11px;
     }
-    .list-table-format.title{
-        display: none;
+
+    .list-table-format img{
+        width: 45px;
+        height: 45px;
     }
+
+    .list-product-details,
+    .list-product-price{
+        gap: 4px;
+    }
+
+}
+
+@media (max-width: 600px){
+
+    .list{
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .list-table{
+        min-width: 650px;
+    }
+
+    .list-table-format{
+        grid-template-columns: 60px 0.8fr 0.6fr 1fr 1fr 40px;
+    }
+
 }

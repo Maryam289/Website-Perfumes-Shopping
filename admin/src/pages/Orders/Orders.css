@@ -10,40 +10,101 @@
     color: rgb(49, 45, 45);
 }
 
-.order-item-perfume, .order-item-name{
-    font-weight: 600;
-}
-
 .order-item-name{
     margin-top: 30px;
     margin-bottom: 5px;
+    font-weight: 600;
 }
 
 .order-item-address{
     margin-bottom: 10px;
 }
 
-.order-item select{
-    background-color: rgb(233, 220, 210);
-    border: 1px solid salmon;
-    width: max(13vw, 120px);
-    padding: 10px;
-    outline: none;
+.order-item-products{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-@media (max-width: 1000px) {
+.order-product{
+    padding: 10px;
+    border: 1px solid #e5d2c4;
+    border-radius: 6px;
+    background-color: #fffaf7;
+}
+
+.order-product-name{
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.order-product-details{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    font-size: 12px;
+    color: #5d514a;
+}
+
+.order-product-details span{
+    white-space: nowrap;
+}
+
+
+
+@media (max-width: 900px){
+
     .order-item{
-        font-size: 12px;
-        grid-template-columns: 0.5fr 2fr 1fr;
-        padding: 15px 8px;
+        grid-template-columns: 60px 1fr;
+        gap: 15px;
     }
 
-    .order-item select{
-        padding: 5px;
-        font-size: 12px;
+    .order-item > p,
+    .order-item > select{
+        grid-column: 2;
     }
 
-    .order-item img{
-        width: 40px;
+    .order-item > img{
+        width: 50px;
+    }
+
+    .order-product-details{
+        flex-direction: column;
+        gap: 5px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .order-item {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 15px;
+        margin: 15px 0px;
+        font-size: 13px;
+    }
+
+    .order-item > img {
+        width: 60px;
+        align-self: center;
+    }
+
+    .order-item-name {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .order-item-address {
+        margin-bottom: 5px;
+    }
+
+    .order-item select {
+        width: 100%;
+        max-width: none;
+        padding: 12px 10px;
+        font-size: 14px;
     }
 }

@@ -19,7 +19,7 @@ const PlaceOrder = () => {
   const [deliveryDistance, setDeliveryDistance] = useState(0)
   const [locationSource, setLocationSource] = useState(null);
 
-  const {getTotalCartAmount, token, perfume_list, cartItems, setCartItems, url} = useContext(StoreContext)
+  const {getTotalCartAmount, token, setCartItems, url} = useContext(StoreContext)
 
   const[data, setData] = useState({
     firstName:"",
@@ -115,28 +115,24 @@ const PlaceOrder = () => {
 
   const placeOrder = async (event) => {
     event.preventDefault();
-    if (isPlacingOrder) return;
-    setIsPlacingOrder(true);
-    let orderItems = [];
-    perfume_list.forEach((item) => {
-      if (cartItems[item._id] > 0) {
-        // بنغيرش الـ object الأصلي الموجود في perfume_list علشان كدا عملناها ب النقط دى
-        let itemInfo = {
-          ...item,
-          quantity: cartItems[item._id]
-        };
-        orderItems.push(itemInfo);
-      }
-    });
-
-    let orderData = {
-      address: data,
-      deliveryLocation: deliveryLocation,
-      deliveryFee: deliveryFee,
-      items: orderItems,
-      amount: getTotalCartAmount() + deliveryFee
+    if (isPlacingOrder){
+      return;
+    } 
+    if (!deliveryLocation) {
+      alert("Please select your delivery location");
+      return
     };
+    setIsPlacingOrder(true);
 
+    const orderData = {
+      address: {
+        ...data,
+        deliveryLocation,
+        deliveryFee,
+        deliveryDistance
+      }
+    }
+    
     try {
       let response = await axios.post(
         url + "/api/order/place",
@@ -150,7 +146,6 @@ const PlaceOrder = () => {
 
       if (response.data.success) {
         setCartItems({});
-        setIsPlacingOrder(true);
         // العربية تظهر لمدة 2.5 ثانية
         setTimeout(() => {
           setIsPlacingOrder(false);
@@ -298,15 +293,15 @@ const PlaceOrder = () => {
         return 30;
     }
 
-    if (distance <= 10) {
-        return 45;
+    if (distance <= 17) {
+        return 50;
     }
 
-    if (distance <= 15) {
-        return 60;
+    if (distance <= 25) {
+        return 70;
     }
 
-    if (distance <= 20) {
+    if (distance <= 30) {
         return 80;
     }
 

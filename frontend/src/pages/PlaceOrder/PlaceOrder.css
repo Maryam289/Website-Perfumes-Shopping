@@ -188,3 +188,110 @@
     }
 
 }
+
+@media (max-width: 900px) {
+
+    .place-order {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 40px;
+        margin-top: 70px;
+    }
+
+    .place-order-left,
+    .place-order-right {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .place-order-left .title,
+    .place-order-right .title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .place-order .cart-total button {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .order-confirmation {
+        min-height: 55vh;
+        padding: 50px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .place-order {
+        margin-top: 50px;
+        gap: 30px;
+    }
+
+    .place-order-left .title,
+    .place-order-right .title {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    .place-order-left input {
+        padding: 12px 10px;
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .place-order-left .multi-fields {
+        gap: 8px;
+    }
+
+    .place-order .cart-total {
+        width: 100%;
+    }
+
+    .place-order .cart-total button {
+        width: 100%;
+        max-width: none;
+        margin-top: 20px;
+        padding: 14px 10px;
+    }
+
+    .order-confirmation {
+        min-height: 55vh;
+        padding: 40px 15px;
+    }
+
+    .confirmation-circle {
+        width: 75px;
+        height: 75px;
+        margin-bottom: 20px;
+    }
+
+    .confirmation-circle span {
+        font-size: 42px;
+    }
+
+    .order-confirmation h1 {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .order-confirmation p {
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 25px;
+    }
+
+    .order-confirmation button {
+        width: 100%;
+        max-width: 300px;
+        padding: 13px 20px;
+    }
+
+    .place-order-button {
+        height: 52px;
+    }
+
+    .car {
+        font-size: 26px;
+    }
+}

@@ -2,14 +2,16 @@ import React, { useContext, useState } from 'react'
 import './PerfumeItem.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
+import { useNavigate } from 'react-router-dom'
 
 const PerfumeItem = ({ productType, sizes = [], collectionItems = [], id, name, price, description, image}) => {
 
   const{cartItems, addToCart, removeFromCart, url, getCartKey} = useContext(StoreContext);
+  const navigate = useNavigate();
   // select size from only normal perfume
   const [selectedSize, setSelectedSize] = useState(sizes.length > 0 ? sizes[0].size : null);
-  const cartKey = productType === "perfume" ? getCartKey(id, selectedSize) : getCartKey(id);
-  const quantity = cartItems[cartKey] || 0;
+  const selectedCartKey  = productType === "perfume" ? getCartKey(id, selectedSize) : getCartKey(id, null);
+  const quantity = cartItems[selectedCartKey ] || 0;
 
   // add product safely
   const handleAddToCart = () => {
@@ -35,10 +37,17 @@ const PerfumeItem = ({ productType, sizes = [], collectionItems = [], id, name, 
     removeFromCart(id, null);
    };
 
+   // Collection click
+   const handleCollectionClick = () => {
+    if (productType === "collection") {
+      navigate(`/collection/${id}`)
+    }
+   }
+
   return (
     <div className='perfume-item'>
         <div className="perfume-item-img-container">
-            <img className='perfume-item-image' src={url + "/images/" + image} alt={name} />
+            <img className='perfume-item-image' src={url + "/images/" + image} alt={name} onClick={handleCollectionClick} style={{cursor: productType === "collection" ? "pointer" : "default"}} />
             {/* cart button */}
             {quantity === 0 ? (
               <img className='add' onClick={handleAddToCart} src={assets.add_icon_white} alt="Add to cart"/>) : (
@@ -49,7 +58,7 @@ const PerfumeItem = ({ productType, sizes = [], collectionItems = [], id, name, 
                 </div>
               )}
         </div>
-        <div className="perfume-item-info">
+        <div className="perfume-item-info" onClick={handleCollectionClick} style={{cursor: productType === "collection" ? "pointer" : "default"}}>
             <div className="perfume-item-name-rating">
                 <p>{name}</p>
                 <img src={assets.rating_starts} alt="" />

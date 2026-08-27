@@ -1,12 +1,66 @@
 import React, { useContext } from 'react'
 import './Cart.css'
 import { StoreContext } from '../../context/StoreContext'
-import { useNavigate } from 'react-router-dom';
+import { Router, useNavigate } from 'react-router-dom';
 const Cart = () => {
 
-  const { cartItems, perfume_list, removeFromCart, getTotalCartAmount, url } = useContext(StoreContext);
+  const { cartItems, perfume_list, removeFromCart, getTotalCartAmount, getCartKey, url } = useContext(StoreContext);
 
   const navigate = useNavigate();
+  // Build the cart rows from cartItems.
+  const cartRows = [];
+  for (const cartKey in cartItems) {
+    const quantity = cartItems[cartKey];
+    if (quantity <= 0){
+      continue;
+    } 
+    
+    // Find the product ID from the cart key
+    let productId = cartKey;
+    let selectedSize = null;
+
+    /*
+    In database(mongoDB) saved 
+    Normal perfume:
+      65abc_30ml
+      65abc_50ml
+    Collection:
+      65abc
+        */
+    const sizeMatch = cartKey.match(/^(.+)_(30ml|50ml)$/);
+    if (sizeMatch) {
+      productId = sizeMatch[1];
+      selectedSize = sizeMatch[2];
+    }
+    //find the original prodact from backend
+    const item = perfume_list.find((product) => product._id === productId);
+
+    if(!item){
+      continue;
+    }
+
+    // Get the real price from data
+    let itemPrice = 0;
+    if (item.productType === "collection") {
+      itemPrice = Number(item.price) || 0;
+    } else {
+      const selectedSizeData = item.sizes?.find(
+        (sizeItem) => sizeItem.size === selectedSize
+      );
+
+      if (selectedSizeData) {
+        itemPrice = Number(selectedSizeData.price) || 0;
+      }
+    }
+
+    cartRows.push({
+      cartKey,
+      item,
+      selectedSize,
+      quantity,
+      itemPrice
+    });
+  }
   return (
     <div className='cart'>
       <div className="cart-items">
@@ -21,25 +75,23 @@ const Cart = () => {
         </div>
         <br />
         <hr />
-        {perfume_list.map((item, index) => {
-          if (cartItems[item._id] > 0) {
-            return (
-              <div>
-                <div className='cart-items-title cart-items-item'>
-                  <img src={url + "/images/" + item.image} alt="" />
-                  <p>{item.name}</p>
-                  <p>{item.price} EGP</p>
-                  <p>{item.size}</p>
-                  <p>{cartItems[item._id]}</p>
-                  <p>{item.price * cartItems[item._id]} EGP</p>
-                  <p onClick={()=>removeFromCart(item._id)} className='cross'>x</p>
-                </div>
-                <hr />
-              </div>
-            )
-          }
-        })}
+
+        {cartRows.map((row) => (
+          <div key={row.cartKey}>
+            <div className='cart-items-title cart-items-item'>
+              <img src={url + "/images/" + row.item.image} alt={row.item.name} />
+              <p>{row.item.name}</p>
+              <p>{row.itemPrice} EGP</p>
+              <p>{row.selectedSize || "-"}</p>
+              <p>{row.quantity}</p>
+              <p>{row.itemPrice * row.quantity} EGP</p>
+              <p onClick={()=>removeFromCart(row.item._id, row.selectedSize)} className='cross'>x</p>
+            </div>
+            <hr />
+          </div>
+          ))}
       </div>
+
       <div className="cart-bottom">
         <div className="cart-total">
           <h2>Cart Totals</h2>
@@ -48,16 +100,6 @@ const Cart = () => {
               <p>Subtotal</p>
               <p>{getTotalCartAmount()} EGP</p>
             </div>
-            {/* <hr />
-            <div className="cart-total-details">
-              <p>Delivery fee</p>
-              <p>{getTotalCartAmount()===0?0:50} EGP</p>
-            </div> */}
-            {/* <hr />
-            <div className="cart-total-details">
-              <b>Total</b>
-              <b>{getTotalCartAmount()===0?0:getTotalCartAmount()+50} EGP</b>
-            </div> */}
           </div>
           <button onClick={()=>navigate('/order')}>PROCEED TO CHECKOUT</button>
         </div>
@@ -71,7 +113,6 @@ const Cart = () => {
           </div>
         </div>
       </div>
-
     </div>
   )
 }

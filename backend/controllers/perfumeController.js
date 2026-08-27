@@ -174,4 +174,43 @@ const removePerfume = async(req, res) => {
     }
 }
 
-export{addPerfume, listPerfume, removePerfume}
+const removePerfumeSize = async (req, res) => {
+    try {
+        const { id, size } = req.body;
+        const product = await perfumeModel.findById(id);
+
+        if (!product) {
+            return res.json({success: false, message: "Product not found"});
+        }
+
+        if (product.productType !== "perfume") {
+            return res.json({success: false, message: "Sizes can only be removed from perfumes" });
+        }
+
+        const sizeExists = product.sizes.some(
+            (sizeItem) => sizeItem.size === size
+        );
+
+        if (!sizeExists) {
+            return res.json({success: false, message: "Size not found"});
+        }
+
+        if (product.sizes.length === 1) {
+        return res.json({success: false, message: "Cannot remove the last size. Delete the product instead."});
+        }
+
+        product.sizes = product.sizes.filter(
+            (sizeItem) => sizeItem.size !== size
+        );
+
+        await product.save();
+        res.json({success: true, message: `${size} removed successfully`});
+
+    } catch (error) {
+        console.log(error);
+
+        res.json({success: false, message: "Error removing size"});
+    }
+};
+
+export{addPerfume, listPerfume, removePerfume, removePerfumeSize}

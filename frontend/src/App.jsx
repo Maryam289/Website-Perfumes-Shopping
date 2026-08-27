@@ -12,6 +12,7 @@ import About from './pages/About/About'
 import Delivery from './pages/Delivery/Delivery'
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy'
 import ScrollToTop from './context/ScrollToTop.jsx'
+import CollectionDetails from './pages/CollectionDetails/CollectionDetails'
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
           <Route path='/about' element={<About />} />
           <Route path='/delivery' element={<Delivery />} />
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+          <Route path='/collection/:id' element={<CollectionDetails />} />
 
         </Routes>
       </div>
