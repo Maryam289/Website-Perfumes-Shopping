@@ -47,7 +47,7 @@ const PerfumeItem = ({ productType, sizes = [], collectionItems = [], id, name, 
   return (
     <div className='perfume-item'>
         <div className="perfume-item-img-container">
-            <img className='perfume-item-image' src={url + "/images/" + image} alt={name} onClick={handleCollectionClick} style={{cursor: productType === "collection" ? "pointer" : "default"}} />
+            <img className='perfume-item-image' src={image.url} alt={name} onClick={handleCollectionClick} style={{cursor: productType === "collection" ? "pointer" : "default"}} />
             {/* cart button */}
             {quantity === 0 ? (
               <img className='add' onClick={handleAddToCart} src={assets.add_icon_white} alt="Add to cart"/>) : (

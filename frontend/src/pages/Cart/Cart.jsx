@@ -79,7 +79,7 @@ const Cart = () => {
         {cartRows.map((row) => (
           <div key={row.cartKey}>
             <div className='cart-items-title cart-items-item'>
-              <img src={url + "/images/" + row.item.image} alt={row.item.name} />
+              <img src={row.item.image.url} alt={row.item.name} />
               <p>{row.item.name}</p>
               <p>{row.itemPrice} EGP</p>
               <p>{row.selectedSize || "-"}</p>

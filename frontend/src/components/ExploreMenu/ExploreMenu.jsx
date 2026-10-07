@@ -1,6 +1,6 @@
 import React from 'react'
 import './ExploreMenu.css'
-import { bottle_list, categories } from '../../assets/assets'
+import { categories } from '../../assets/assets'
 
 const ExploreMenu = ({category, setCategory}) => {
 

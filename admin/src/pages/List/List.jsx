@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react'
 import './List.css'
 import axios from "axios"
 import { toast } from "react-toastify"
+import {assets} from '../../assets/assets'
+import EditProductForm from '../../components/EditProductForm/EditProductForm'
 
 const List = ({ url }) => {
 
   // const url = "http://localhost:4000"
   const [list, setList] = useState([]);
+  const [editingProduct, setEditingProduct] = useState(null)
 
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/perfume/list`);
@@ -66,7 +69,7 @@ const List = ({ url }) => {
 
           return (
             <div key={item._id} className='list-table-format'>
-              <img src={`${url}/images/${item.image}`} alt={item.name} />
+              <img src={`${item.image.url}`} alt={item.name} />
               <p>{item.name}</p>
               <p className='product-type'>{isCollection ? "Collection" : "Perfume"}</p>
               <div className="list-product-details">
@@ -108,11 +111,16 @@ const List = ({ url }) => {
                   ))
                 )}
               </div>
-              <p onClick={() => removePerfume(item._id)} className='cursor'>X</p>
+              <div className="list-actions">
+                <img src={assets.edit_icon} alt="Edit" className='edit-icon' onClick={() => setEditingProduct(item)} />
+                <p onClick={() => removePerfume(item._id)} className='cursor'>X</p>
+              </div>
             </div>
           );
         })}
       </div>
+      {editingProduct && (
+        <EditProductForm product={editingProduct} onClose={() => setEditingProduct(null)} onUpdated={fetchList} url={url}/> )}
     </div>
   )
 }

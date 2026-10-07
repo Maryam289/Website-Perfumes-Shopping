@@ -38,6 +38,15 @@ const PerfumeDisplay = ({category, search, title}) => {
       return (matchesCategory && matchesSize && matchesSearch);
     });
 
+    const formatDescription = (text) => {
+      return text.split(/(\*\*.*?\*\*)/g).map((part, index) => {
+          if (part.startsWith('**') && part.endsWith('**')) {
+              return <strong key={index}>{part.slice(2, -2)}</strong>;
+          }
+          return part;
+      });
+    };
+
   return (
     <div className='perfume-display' id='perfume-display'>
         <h2>{title}</h2>
@@ -45,21 +54,6 @@ const PerfumeDisplay = ({category, search, title}) => {
           <div className="perfume-size-section">
             <p className="perfume-size-title">— SELECT YOUR BOTTLE SIZE —</p>
             <div className="perfume-sizes">
-
-              {/* <button className={selectedSize === "All" ? "active" : ""} onClick={() => setSelectedSize("All")}>
-                <div className="size-image">
-                  <img alt="All size" />
-                </div>
-                <span>All</span>
-              </button> */}
-
-              {/* <button className={selectedSize === "Tester" ? "active" : ""} onClick={() => setSelectedSize("Tester")}>
-                <div className="size-image">
-                  <img src={assets.tester_img} alt="Tester" />
-                </div>
-                <span>Tester</span>
-              </button> */}
-
               <button className={selectedSize === "30ml" ? "active" : ""} onClick={() => setSelectedSize("30ml")}>
                 <div className="size-image">
                   <img src={assets.bottle_30ml} alt="30ml" />
@@ -86,7 +80,7 @@ const PerfumeDisplay = ({category, search, title}) => {
                 sizes={item.sizes}
                 collectionItems={item.collectionItems}
                 price={item.price}
-                description={item.description}
+                description={formatDescription(item.description)}
                 image={item.image}
                 gender={item.gender}
                 season={item.season}

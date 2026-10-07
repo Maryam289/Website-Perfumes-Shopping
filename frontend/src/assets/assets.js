@@ -1,15 +1,6 @@
 import logo from './logo.png'
 import basket_icon from './basket_icon.png'
 import search_icon from './search_icon.png'
-import M_Nova1 from './M_Nova1.png'
-import M_Nova2 from './M_Nova2.png'
-import M_Nova3 from './M_Nova3.png'
-import img_1 from './img_1.jpeg'
-import img_2 from './img_2.png'
-import img_3 from './img_3.jpg'
-import img_4 from './img_4.jpg'
-import img_5 from './img_5.jpeg'
-import img_6 from './img_6.jpg'
 import add_icon from './add_icon.png'
 import add_icon_white from './add_icon_white.png'
 import minus_icon from './minus_icon.png'
@@ -23,29 +14,17 @@ import user_image from './user_image.png'
 import bag_shopping from './bag_shopping.png'
 import logout from './logout.png'
 import box_order from './box_order.png'
-import snowflake from './snowflake.png'
-import sun from './sun.png'
-import woman_clothes from './woman_clothes.png'
-import suit from './suit.png'
-import img_30ml from './img_30ml.jpg'
-import img_50ml from './img_50ml.jpg'
-import tester_img from './tester_img.jpg'
 import bottle_30ml from './bottel_30ml.png'
 import bottle_50ml from './bottle_50ml.png'
+import man from './Man.jpeg'
+import women from './Women.jpeg'
+import summer from './Summer.jpeg'
+import winter from './Winter.jpeg'
 
 export const assets = {
     logo,
     basket_icon,
     search_icon,
-    M_Nova1,
-    M_Nova2,
-    M_Nova3,
-    img_1,
-    img_2,
-    img_3,
-    img_4,
-    img_5,
-    img_6,
     add_icon,
     minus_icon,
     add_icon_white,
@@ -59,106 +38,35 @@ export const assets = {
     bag_shopping,
     logout,
     box_order,
-    snowflake,
-    sun,
-    woman_clothes,
-    suit, 
-    img_30ml,
-    img_50ml,
-    tester_img,
     bottle_30ml,
-    bottle_50ml
+    bottle_50ml,
+    man,
+    women,
+    winter,
+    summer
 }
 
-export const bottle_list = [
-    {
-        bottle_size: "30ml",
-        bottle_image: M_Nova1
-
-    },
-    {
-
-        bottle_size: "50ml",
-        bottle_image: M_Nova2
-
-    }
-]
+export const bottle_list = []
 
 export const categories = [
     {
         id: "Men",
         name: "Men's Perfumes",
-        image: suit
+        image: man
     },
     {
         id: "Women",
         name: "Women's Perfumes",
-        image: woman_clothes
+        image: women
     },
     {
         id: "Summer",
         name: "Summer Perfumes",
-        image: sun
+        image: summer
     },
     {
         id: "Winter",
         name: "Winter Perfumes",
-        image: snowflake
+        image: winter
     }
 ];
-
-export const perfume_list = [
-    {
-        _id: "1",
-        name: "Versace",
-        image: img_1,
-        price: 450,
-        description: "Versace Eros Perfum For Men 50ml",
-        category: "50ml"
-    },
-
-    {
-        _id: "2",
-        name: "Versace",
-        image: img_2,
-        price: 450,
-        description: "Versace Yellow Diamond Eau de Toilette 30ml",
-        category: "30ml"
-    },
-
-    {
-        _id: "3",
-        name: "Yves Saint Laurent",
-        image: img_3,
-        price: 500,
-        description: "Ysl LIBRE INTENSE EAU DE PERFUM (EDP) 50ml",
-        category: "50ml"
-    },
-
-    {
-        _id: "4",
-        name: "Lattafa",
-        image: img_4,
-        price: 450,
-        description: "Angham Lattafa 30ml",
-        category: "30ml"
-    },
-
-    {
-        _id: "5",
-        name: "Lattafa",
-        image: img_5,
-        price: 1000,
-        description: "Lattafa Khamrah Dukhan 100ml",
-        category: "100ml"
-    },
-
-    {
-        _id: "6",
-        name: "Lattafa",
-        image: img_6,
-        price: 1000,
-        description: "Mohra Silky Rose Lattafa Perfumes 100ml",
-        category: "100ml"
-    }
-]

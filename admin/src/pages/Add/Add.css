@@ -21,15 +21,15 @@
 
 .add-product-type select{
     max-width: 180px;
-    padding: 10px,
-    border:1px solid #d9d9d9;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
     outline: none;
 }
 
 .add-img-upload img{
     width: 120px;
     height: 120px;
-    object-fit: cover:
+    object-fit: cover;
     cursor: pointer
 }
 .add-product-name, .add-product-description{
@@ -100,7 +100,7 @@
     gap: 8px;
 }
 
-collection-item-field input, .collection-item-field textarea{
+.collection-item-field input, .collection-item-field textarea{
     width: 100%;
     padding: 10px;
     border: 1px solid #d9d9d9;
@@ -109,7 +109,7 @@ collection-item-field input, .collection-item-field textarea{
 }
 
 .collection-item-field textarea{
-    relative: vertical;
+    negative: vertical;
 }
 
 .collection-item-category{
@@ -144,7 +144,6 @@ collection-item-field input, .collection-item-field textarea{
     width: 100%;
 }
 
-/* ? */
 .add-size-price select, .add-size-price input{
     max-width: 160px;
     padding: 10px;
@@ -177,4 +176,11 @@ collection-item-field input, .collection-item-field textarea{
     padding: 10px;
     border: 1px solid #d9d9d9;
     outline:none;
+}
+
+.collection-item-count select{
+    max-width: 150px;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    outline: none;
 }

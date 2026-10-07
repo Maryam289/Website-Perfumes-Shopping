@@ -27,10 +27,7 @@ L.Icon.Default.mergeOptions({
 });
 
 
-// --------------------------------------------------
 // Move map only when location comes from INPUT
-// --------------------------------------------------
-
 const MoveMap = ({ position, locationSource }) => {
 
     const map = useMap();
@@ -61,10 +58,7 @@ const MoveMap = ({ position, locationSource }) => {
 };
 
 
-// --------------------------------------------------
 // Marker + map click
-// --------------------------------------------------
-
 const LocationMarker = ({position, setLocation}) => {
     useMapEvents({
 
@@ -91,10 +85,7 @@ const LocationMarker = ({position, setLocation}) => {
 };
 
 
-// --------------------------------------------------
 // Delivery Map
-// --------------------------------------------------
-
 const DeliveryMap = ({location, setLocation, locationSource}) => {
 
     const defaultPosition = [
@@ -120,7 +111,6 @@ const DeliveryMap = ({location, setLocation, locationSource}) => {
 
 
                 {/* Move map only after address search */}
-
                 <MoveMap
                     position={location}
                     locationSource={locationSource}
@@ -128,7 +118,6 @@ const DeliveryMap = ({location, setLocation, locationSource}) => {
 
 
                 {/* Customer can click anywhere on map */}
-
                 <LocationMarker
                     position={location}
                     setLocation={setLocation}

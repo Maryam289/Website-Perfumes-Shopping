@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import './CollectionDetails.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { StoreContext } from '../../context/StoreContext'
@@ -45,6 +45,15 @@ const CollectionDetails = () => {
         )
     }
 
+    const formatDescription = (text) => {
+      return text.split(/(\*\*.*?\*\*)/g).map((part, index) => {
+          if (part.startsWith('**') && part.endsWith('**')) {
+              return <strong key={index}>{part.slice(2, -2)}</strong>;
+          }
+          return part;
+      });
+    };
+
     return (
         <div className="collection-details">
             <button onClick={() => navigate(-1)} className="collection-back-button"> 
@@ -54,13 +63,13 @@ const CollectionDetails = () => {
             {/* Collection main information */}
             <div className="collection-main">
                 <div className="collection-main-image-container">
-                    <img src={url + "/images/" + collection.image} alt={collection.name} className="collection-main-image"/>
+                    <img src={collection.image.url} alt={collection.name} className="collection-main-image"/>
                 </div>
 
                 <div className="collection-main-info">
                     <h1>{collection.name}</h1>
 
-                    <p className="collection-description">{collection.description}</p>
+                    <p className="collection-description">{formatDescription(collection.description)}</p>
 
                     <div className="collection-price-box">
                         <span>Total Collection Price</span>
@@ -111,17 +120,18 @@ const CollectionDetails = () => {
                     {collection.collectionItems?.map((item, index) => (
                         <div className="collection-product-card" key={index}>
                             <div className="collection-product-image-container">
-                                <img src={url + "/images/" + item.image}alt={item.name} className="collection-product-image"/>
+                                <img src={item.image.url}alt={item.name} className="collection-product-image"/>
                             </div>
 
                             <div className="collection-product-info">
                                 <h3>{item.name}</h3>
                                 <p className="collection-product-description">
-                                    {item.description}
+                                    {formatDescription(item.description)}
                                 </p>
 
                                 <div className="collection-product-details">
                                     <p><span>For:</span> {item.gender}</p>
+                                    <p><span>Season:</span> {item.season}</p>
                                 </div>
                             </div>
 

@@ -1,0 +1,105 @@
+.edit-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.edit-form {
+    background: white;
+    width: 700px;
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.edit-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.edit-form-header h2 {
+    margin: 0;
+}
+
+.edit-close-button {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.edit-img-upload img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.edit-category {
+    display: flex;
+    gap: 20px;
+}
+
+.edit-category > div {
+    flex: 1;
+}
+
+.edit-sizes-container {
+    width: 100%;
+}
+
+.edit-section-title {
+    font-weight: 600;
+}
+
+.edit-size-price {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.edit-size,
+.edit-price {
+    flex: 1;
+}
+
+.edit-size-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.edit-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.edit-form-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.edit-form-actions .cancel-button:hover{
+    background-color: rgb(197, 62, 38);
+}
+
+.edit-form-actions .update-button:hover{
+    background-color: rgb(63, 170, 63);
+}

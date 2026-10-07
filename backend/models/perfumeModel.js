@@ -9,7 +9,10 @@ const sizeSchema = new mongoose.Schema({
 const collectionItemSchema = new mongoose.Schema({
     name: {type: String, required: true},
     description: {type: String, required: true},
-    image: {type: String, required: true},
+    image:{
+        url: { type: String, required: true },
+        public_id: { type: String, required: true }
+    },
     price: {type: Number, required: true, min: 0},
     gender:{type: String, enum:["Men", "Women", "Both"], required: true},
     season:{type: String, enum:["-" ,"Summer", "Winter"], default: "-"}
@@ -20,15 +23,18 @@ const perfumeSchema = new mongoose.Schema({
     productType: {type:String, enum:["perfume", "collection"], default:"perfume", required:true},
     name: {type:String, required: true},
     description: {type: String, required: true},
-    image:{type: String, required: true},
+    image:{
+        url: { type: String, required: true },
+        public_id: { type: String, required: true }
+    },
     // size for just perfume not collection(testers)
     sizes:{type: [sizeSchema], default: []},
     collectionItems: {type: [collectionItemSchema], default: [], validate:{
         validator: function (items){
             if (this.productType === "collection") {
-                return items.length === 3;
+                return items.length >= 2 && items.length <= 4;
             } return true;
-        }, message: "A collection must contain exactly 3 items"
+        }, message: "A collection must contain between 2 and 4 items"
     }},
     gender:{type: String, enum:["Men", "Women", "Both"], required: true},
     season:{type: String, enum:["-" ,"Summer", "Winter"], default:"-"},

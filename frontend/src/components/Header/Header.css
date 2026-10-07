@@ -1,10 +1,11 @@
 .header{
-    height: 34vw;
-    margin: 30px auto;
-    background: url('/header_img.jpeg') no-repeat center center;
-    background-size: cover;
-    position: relative;
     width: 100%;
+    aspect-ratio: 1672 / 941;
+    margin: 30px auto;
+    background: url('/background_header.jpeg') no-repeat center;
+    background-size: contain;
+    background-position: center;
+    position: relative;
 }
 
 .header-contents{
@@ -19,16 +20,6 @@
     animation: fadeIn 3s;
 }
 
-.header-contents h2{
-    font-weight: 500;
-    color: white;
-    font-size: max(4.5vw, 22px);
-}
-
-.header-contents p{
-    color: white;
-    font-size: 1vw;
-}
 
 .header-contents a{
     border: none;
@@ -51,9 +42,6 @@
 @media(max-width:750px) {
     .header-contents{
         max-width: 65%;
-    }
-    .header-contents p{
-        display: none;
     }
     .header-contents a{
         padding: 2vw 4vw;
